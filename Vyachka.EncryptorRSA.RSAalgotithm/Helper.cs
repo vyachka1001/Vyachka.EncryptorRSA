@@ -148,7 +148,7 @@ namespace Vyachka.EncryptorRSA.RSAalgorithm
             return x;
         }
 
-        public static byte[] ToByteArray(short[] message)
+        public static byte[] ToByteArray(ushort[] message)
         {
             byte[] result = new byte[message.Length * 2];
             int j = 0;
