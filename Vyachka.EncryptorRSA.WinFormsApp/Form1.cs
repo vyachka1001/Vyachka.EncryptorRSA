@@ -203,7 +203,7 @@ namespace Vyachka.EncryptorRSA.WinFormsApp
 
         private void DecryptFile()
         {
-            byte[] message = File.ReadAllBytes("d:\\output.txt");
+            byte[] message = File.ReadAllBytes(file_textBox.Text);
             BigInteger key = BigInteger.Parse(closedKey_textBox.Text);
             BigInteger r = BigInteger.Parse(r_textBox.Text);
             byte[] result = new byte[message.Length / 2];
