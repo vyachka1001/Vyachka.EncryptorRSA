@@ -154,7 +154,7 @@ namespace Vyachka.EncryptorRSA.RSAalgorithm
             int j = 0;
             for (int i = 0; i < message.Length; i++)
             {
-                string res = GetByteString(Convert.ToString(message[i], 2), 16);
+                string res = GetByteString(GetBits(message[i]), 16);
                 string firstByte = res.Substring(0, 8);
                 string secondByte = res.Substring(8, 8);
                 result[j] = Convert.ToByte(firstByte, 2);
@@ -165,15 +165,15 @@ namespace Vyachka.EncryptorRSA.RSAalgorithm
             return result;
         }
 
-        public static short[] ToShortArray(byte[] message)
+        public static ushort[] ToUShortArray(byte[] message)
         {
-            short[] result = new short[message.Length / 2];
+            ushort[] result = new ushort[message.Length / 2];
             int j = 0;
             for (int i = 0; i < result.Length; i++)
             {
                 string res = GetByteString(Convert.ToString(message[j], 2), 8) + 
                     GetByteString(Convert.ToString(message[j + 1], 2), 8);
-                result[i] = Convert.ToInt16(res, 2);
+                result[i] = Convert.ToUInt16(res, 2);
                 j += 2;
             }
 
@@ -197,6 +197,19 @@ namespace Vyachka.EncryptorRSA.RSAalgorithm
             {
                 return str;
             }
+        }
+
+        private static string GetBits(BigInteger r)
+        {
+            string binaryStr = "";
+            while (r > 0)
+            {
+                int temp = (int)(r % 2);
+                binaryStr = temp.ToString() + binaryStr;
+                r /= 2;
+            }
+
+            return binaryStr;
         }
     }
 }

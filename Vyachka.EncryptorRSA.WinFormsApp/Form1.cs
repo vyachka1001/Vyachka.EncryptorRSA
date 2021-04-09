@@ -39,7 +39,7 @@ namespace Vyachka.EncryptorRSA.WinFormsApp
             BigInteger closedKey = BigInteger.Parse(closedKey_textBox.Text);
             BigInteger eulerFunc = Helper.CalcEulerFunc(p, q);
             BigInteger key = Helper.CalcMultiplicativeInverseKey(eulerFunc, closedKey);
-            short[] result = new short[message.Length];
+            ushort[] result = new ushort[message.Length];
             try
             {
                 result = RSAEncryptor.Encrypt(message, key, p * q);
@@ -83,6 +83,7 @@ namespace Vyachka.EncryptorRSA.WinFormsApp
             {
                 MessageBox.Show("p * q must be higher than 255, because 255 symbols can be ciphered", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
             return true;
@@ -155,6 +156,7 @@ namespace Vyachka.EncryptorRSA.WinFormsApp
             {
                 MessageBox.Show("r parameter must be higher than 255, because 255 symbols can be ciphered", "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
             return true;
