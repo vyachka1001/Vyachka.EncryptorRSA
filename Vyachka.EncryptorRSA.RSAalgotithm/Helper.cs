@@ -80,7 +80,6 @@ namespace Vyachka.EncryptorRSA.RSAalgorithm
                 return true;
             }
 
-
             if (n % 2 == 0)
             {
                 return false;

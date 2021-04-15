@@ -30,7 +30,7 @@ namespace Vyachka.EncryptorRSA.RSAalgorithm
             for (int i = 0; i < ushortArrMessage.Length; i++)
             {
                 BigInteger res = Helper.FastExp(ushortArrMessage[i], key, r);
-                if (res > byte.MaxValue)
+                if (res > ushort.MaxValue)
                 {
                     throw new ArithmeticException($"Decipher value is more than {byte.MaxValue}. " +
                                                   $"Please, fix input parameters");
